@@ -133,3 +133,14 @@
     text-decoration: underline;
   }
 }
+
+kbd {
+  display: inline-block; /* Allows the element to sit inline */
+  padding: 3px 5px;
+  color: inherit; /* Inherits the color from the parent, useful for theme compatibility */
+  background: var(--background);
+  border: solid 1px #c0c0c0;
+  border-radius: 5px; /* Rounded borders */
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Add a little depth */
+  margin: 0px 2px; /* Space between consecutive kbd tags */
+}
