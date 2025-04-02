@@ -62,6 +62,8 @@
               {{ language_menu_macros::menu(page=page) }}
             {%- elif section %}
               {{ language_menu_macros::menu(page=section) }}
+            {%- else %}
+              {{ language_menu_macros::menu_auto() }}
             {% endif -%}
         </div>
 

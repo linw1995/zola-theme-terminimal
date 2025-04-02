@@ -3,8 +3,55 @@
   <li class="menu__trigger">{{ trans(key="Language", lang=page.lang) }}&nbsp;▾</li>
   <li>
     <ul class="menu__dropdown">
-      {%- for item in page.translations %}
-        <li><a href="{{ item.permalink }}">{{ trans(key=item.lang, lang=page.lang) }}</a></li>
+      {% set translations = page.translations | group_by(attribute="lang") %}
+      {%- for lcode in config.extra.languages_order -%}
+        {%- if lcode not in translations -%}
+            {%- continue -%}
+        {%- endif -%}
+        {%- set items = translations[lcode] %}
+        {%- for item in items %}
+          <li><a href="{{ item.permalink }}">{{ trans(key=item.lang, lang=page.lang) }}</a></li>
+        {% endfor -%}
+      {% endfor -%}
+    </ul>
+  </li>
+</ul>
+{% endmacro menu %}
+
+
+{% macro menu_auto() %}
+<ul class="menu menu--desktop menu--language-selector">
+  <li class="menu__trigger">{{ trans(key="Language", lang=lang) }}&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      {%- for lcode in config.extra.languages_order -%}
+        {%- if lcode not in config.languages -%}
+            {%- continue -%}
+        {%- endif -%}
+        {%- set ldetails = config.languages[lcode] %}
+        {#- Skip the current language to avoid linking to the current page -#}
+        {%- if lang == lcode -%}
+            {%- continue -%}
+        {%- endif -%}
+        {% set language_name = trans(key=lcode, lang=lang) %}
+        <li>
+          {%- if lcode == config.default_language -%}
+            <a
+              href="{{ current_url | replace(from='/' ~ lang ~ '/', to = '/') }}"
+              aria-label="{{ language_name }}"
+            >{{ language_name }}</a>
+          {%- elif lang == config.default_language -%}
+            <a
+              href="{{ config.base_url }}{{ lcode }}{{ current_path | default(value="/") | safe }}"
+              aria-label="{{ language_name }}"
+            >{{ language_name }}</a>
+          {%- else -%} 
+            <a
+              href="{{ current_url | replace(from='/' ~ lang ~ '/', to='/' ~ lcode ~ '/') }}"
+              aria-label="{{ language_name }}"
+            >{{ language_name }}</a>
+          {%- endif -%}
+        </li>
       {% endfor -%}
     </ul>
   </li>
