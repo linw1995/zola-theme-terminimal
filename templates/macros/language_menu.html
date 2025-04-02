@@ -5,13 +5,17 @@
     <ul class="menu__dropdown">
       {% set translations = page.translations | group_by(attribute="lang") %}
       {%- for lcode in config.extra.languages_order -%}
-        {%- if lcode not in translations -%}
+        {%- if lang == lcode -%}
             {%- continue -%}
         {%- endif -%}
-        {%- set items = translations[lcode] %}
-        {%- for item in items %}
-          <li><a href="{{ item.permalink }}">{{ trans(key=item.lang, lang=page.lang) }}</a></li>
-        {% endfor -%}
+        {%- if lcode not in translations -%}
+            <li class="menu__disabled">{{ trans(key=lcode, lang=page.lang) }}</li>
+        {%- else -%}
+          {%- set items = translations[lcode] %}
+          {%- for item in items %}
+            <li><a href="{{ item.permalink }}">{{ trans(key=lcode, lang=page.lang) }}</a></li>
+          {% endfor -%}
+        {%- endif -%}
       {% endfor -%}
     </ul>
   </li>

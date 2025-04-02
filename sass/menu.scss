@@ -42,5 +42,8 @@
       list-style: none;
       z-index: 99;
     }
+    &__disabled {
+      color: var(--accent-alpha-20);
+    }
   }
 }
