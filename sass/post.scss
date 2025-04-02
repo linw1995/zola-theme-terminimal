@@ -144,3 +144,9 @@ kbd {
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); /* Add a little depth */
   margin: 0px 2px; /* Space between consecutive kbd tags */
 }
+
+.footnote-definition {
+    display: flex;
+    gap: 4px;
+}
+
