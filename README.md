@@ -8,7 +8,7 @@
 See the live demo (of the default configuration) here:
 https://pawroman.github.io/zola-theme-terminimal/
 
-Tested with Zola v0.19.2.
+Requires Zola v0.23.6 or newer.
 
 Please note that earlier (and older) versions might not work because of breaking changes across Zola versions.
 
@@ -59,9 +59,9 @@ compile_sass = true
 Also see the Zola documentation on using themes:
 https://www.getzola.org/documentation/themes/installing-and-using-themes/
 
-## Shortcodes
+## Components
 
-The theme adds two custom shortcodes related to image handling.
+The theme adds two custom components related to image handling.
 
 ### `image`
 
@@ -80,8 +80,10 @@ Optional arguments:
 Example:
 
 ```
-{{ image(src="/img/hello.png", alt="Hello Friend",
-         position="left", style="border-radius: 8px;") }}
+{{ <image src="/img/hello.png"
+    alt="Hello Friend"
+    position="left"
+    style="border-radius: 8px;" /> }}
 ```
   
 ### `figure`
@@ -95,12 +97,12 @@ Same as `image`, but with a few extra optional arguments:
 Example:
 
 ```
-{{ figure(src="http://rustacean.net/assets/rustacean-flat-gesture.png",
-          style="width: 25%;",
-          position="right",
-          caption_position="left",
-          caption="**Ferris**, the (unofficial) Rust mascot",
-          caption_style="font-style: italic;") }}
+{{ <figure src="http://rustacean.net/assets/rustacean-flat-gesture.png"
+    style="width: 25%;"
+    position="right"
+    caption_position="left"
+    caption="**Ferris**, the (unofficial) Rust mascot"
+    caption_style="font-style: italic;" /> }}
 ```
 
 ## OpenGraph
@@ -413,7 +415,7 @@ This theme has been forked from https://github.com/panr/hugo-theme-terminal
 
 - 5 color themes, depending on your preference:
   blue (default), green, orange, pink, red.
-- The shortcodes `image` and `figure` (See [Shortcodes](#shortcodes)).
+- The components `image` and `figure` (See [Components](#components)).
 - Fully responsive.
 
 ## License

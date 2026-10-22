@@ -1,11 +1,11 @@
-{% macro menu(page) %}
+{% component language_menu.menu(page, config) %}
 <ul class="menu menu--desktop menu--language-selector">
   <li class="menu__trigger">{{ trans(key="Language", lang=page.lang) }}&nbsp;▾</li>
   <li>
     <ul class="menu__dropdown">
       {% set translations = page.translations | group_by(attribute="lang") %}
       {%- for lcode in config.extra.languages_order -%}
-        {%- if lang == lcode -%}
+        {%- if page.lang == lcode -%}
             {%- continue -%}
         {%- endif -%}
         {%- if lcode not in translations -%}
@@ -20,10 +20,10 @@
     </ul>
   </li>
 </ul>
-{% endmacro menu %}
+{% endcomponent %}
 
 
-{% macro menu_auto() %}
+{% component language_menu.menu_auto(config, lang, current_url, current_path) %}
 <ul class="menu menu--desktop menu--language-selector">
   <li class="menu__trigger">{{ trans(key="Language", lang=lang) }}&nbsp;▾</li>
   <li>
@@ -60,4 +60,4 @@
     </ul>
   </li>
 </ul>
-{% endmacro menu %}
+{% endcomponent %}

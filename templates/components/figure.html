@@ -1,3 +1,4 @@
+{% component figure(src, alt="", position="center", style="", caption="", caption_position="center", caption_style="") %}
 {% if src %}
   <figure class="{% if position %}{{ position }}{% else -%} center {%- endif %}" >
     <img src="{{ src | safe }}"{% if alt %} alt="{{ alt }}"{% endif %}{% if style %} style="{{ style }}"{% endif %} decoding="async" loading="lazy"/>
@@ -6,3 +7,4 @@
     {% endif %}
   </figure>
 {% endif %}
+{% endcomponent %}
